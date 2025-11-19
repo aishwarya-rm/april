@@ -20,7 +20,6 @@ diagnoses = pd.read_csv("../data/diagnoses_icd.csv")
 d_diagnoses = pd.read_csv("../data/d_icd_diagnoses.csv")
 d_items = pd.read_csv("../data/d_items.csv")
 chartevents = pd.read_csv('../data/chartevents.csv')
-subject_ids = pickle.load(open('../data/hk_data/hk_subject_ids.pkl', 'rb'))
 
 # Build contextual bandit dataset 
 def build_cb_dataset(subject_ids, fname, task):
@@ -212,25 +211,26 @@ def define_patient_cohorts(ids, task):
     return (male_subject_ids, female_subject_ids), (comorbidity_ids, no_comorbidity_ids), (low_dosage_ids, high_dosage_ids)
 
         
-# Define cohorts
-potassium_subject_ids = pickle.load(open('../data/potassium_ids', 'rb'))
-sodium_subject_ids = pickle.load(open('../data/sodium_ids.pkl', 'rb'))
+if __name__ == 'main':
+    # Define cohorts
+    potassium_subject_ids = pickle.load(open('../data/potassium_ids', 'rb'))
+    sodium_subject_ids = pickle.load(open('../data/sodium_ids.pkl', 'rb'))
 
-(male_subject_ids, female_subject_ids), (comorbidity_ids, no_comorbidity_ids), (low_dosage_ids, high_dosage_ids) = define_patient_cohorts(potassium_subject_ids, task='potassium')
+    (male_subject_ids, female_subject_ids), (comorbidity_ids, no_comorbidity_ids), (low_dosage_ids, high_dosage_ids) = define_patient_cohorts(potassium_subject_ids, task='potassium')
 
-# Construct the contextual bandit datasets
-cohorts = [male_subject_ids, female_subject_ids, comorbidity_ids, no_comorbidity_ids, low_dosage_ids, high_dosage_ids]
-cohort_names = ["male_potassium.pkl", "female_potassium.pkl", "comorbidity_potassium.pkl", "no_comorbidity_potassium.pkl", "low_dosage_potassium.pkl", "high_dosage_potassium.pkl"]
-dir = "../data/cohorts/"
-for c_ids, name in zip(cohorts, cohort_names):
-    dataset = build_cb_dataset(c_ids, dir + name)
+    # Construct the contextual bandit datasets
+    cohorts = [male_subject_ids, female_subject_ids, comorbidity_ids, no_comorbidity_ids, low_dosage_ids, high_dosage_ids]
+    cohort_names = ["male_potassium.pkl", "female_potassium.pkl", "comorbidity_potassium.pkl", "no_comorbidity_potassium.pkl", "low_dosage_potassium.pkl", "high_dosage_potassium.pkl"]
+    dir = "../data/cohorts/"
+    for c_ids, name in zip(cohorts, cohort_names):
+        dataset = build_cb_dataset(c_ids, dir + name)
 
-(male_subject_ids, female_subject_ids), (comorbidity_ids, no_comorbidity_ids), (low_dosage_ids, high_dosage_ids) = define_patient_cohorts(sodium_subject_ids, task='sodium')
-cohorts = [male_subject_ids, female_subject_ids, comorbidity_ids, no_comorbidity_ids, low_dosage_ids, high_dosage_ids]
-cohort_names = ["male_sodium.pkl", "female_sodium.pkl", "comorbidity_sodium.pkl", "no_comorbidity_sodiumpkl", "low_dosage_sodium.pkl", "high_dosage_sodium.pkl"]
-dir = "../data/cohorts/"
-for c_ids, name in zip(cohorts, cohort_names):
-    dataset = build_cb_dataset(c_ids, dir + name)
+    (male_subject_ids, female_subject_ids), (comorbidity_ids, no_comorbidity_ids), (low_dosage_ids, high_dosage_ids) = define_patient_cohorts(sodium_subject_ids, task='sodium')
+    cohorts = [male_subject_ids, female_subject_ids, comorbidity_ids, no_comorbidity_ids, low_dosage_ids, high_dosage_ids]
+    cohort_names = ["male_sodium.pkl", "female_sodium.pkl", "comorbidity_sodium.pkl", "no_comorbidity_sodiumpkl", "low_dosage_sodium.pkl", "high_dosage_sodium.pkl"]
+    dir = "../data/cohorts/"
+    for c_ids, name in zip(cohorts, cohort_names):
+        dataset = build_cb_dataset(c_ids, dir + name)
 
 
 
