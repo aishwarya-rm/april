@@ -10,7 +10,9 @@ Authors: Aishwarya Mandyam, Kalyani Limaye, Barbara E. Engelhardt*, Emily Alsent
 APRIL is a two stage framework used to generate counterfactual annotations using LLMs for medical tasks.
 
 # Requirements
-Python 3.9
+conda create -n april_env python=3.9 -y
+conda activate april_env
+pip install -r requirements.txt
 
 # Datasets
 Download the MIMIC-IV dataset (https://physionet.org/content/mimiciv/3.1/) after going through the appropriate certifications. Place all non-ICU csv files in data/. 
