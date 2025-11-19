@@ -20,7 +20,8 @@ from itertools import chain
 
 np.random.seed(42)
 torch.manual_seed(42)
-NUM_ACTIONS=4
+
+
 class DiscretePolicyNetwork(nn.Module):
     def __init__(self, state_dim, num_actions, hidden_sizes=[20, 20]):
         super(DiscretePolicyNetwork, self).__init__()
@@ -205,31 +206,29 @@ def learn_cb_policy(dataset_fname, policy_fname, metric_fname, epochs=30, batch_
     return mean, std
 
 if __name__ == "__main__":
-    '''
-    Actually learns the policies. 
-    '''
+    NUM_ACTIONS=4
     # Gender HK
-    mean, std = learn_cb_policy("../notebooks/trajectories/male_cb_07172025.pkl", "../policies/hk_male_cb.pth", "../policies/hk_male_cb_", lr=7e-4, epochs=35)
-    mean, std = learn_cb_policy("../notebooks/trajectories/female_cb_07172025.pkl", "../policies/hk_female_cb.pth", "../policies/hk_female_cb_", lr=5e-4, epochs=35)
+    mean, std = learn_cb_policy("../data/cohorts/male_potassium.pkl", "../policies/male_potassium.pth", "../policies/male_potassium_", lr=7e-4, epochs=35)
+    mean, std = learn_cb_policy("../data/cohorts/female_potassium.pkl", "../policies/female_potassium.pth", "../policies/fmale_potassium_", lr=5e-4, epochs=35)
 
     # Comorbidity HK
-    mean, std = learn_cb_policy("../notebooks/trajectories/nonrenal_cb.pkl", "../policies/nonrenal_cb.pth", "../policies/nonrenal_cb_", lr=5e-3, epochs=40)
-    mean, std = learn_cb_policy("../notebooks/trajectories/renal_cb.pkl", "../policies/renal_cb.pth", "../policies/renal_cb_", lr=1e-3, epochs=40)
+    mean, std = learn_cb_policy("../data/cohorts/comorbidity_potassium.pkl", "../policies/comorbidity_potassium.pth", "../policies/comorbidity_potassium_", lr=5e-3, epochs=40)
+    mean, std = learn_cb_policy("../data/cohorts/no_comorbidity_potsasium.pkl", "../policies/no_comorbidity_potassium.pth", "../policies/no_comorbidity_potassium_", lr=1e-3, epochs=40)
 
     # Dosages, HK
-    mean, std = learn_cb_policy("../notebooks/trajectories/low_k_cb.pkl", "../policies/low_k_cb.pth",
-                                "../policies/low_k_cb_", lr=5e-3, epochs=40, task='hk')
-    mean, std = learn_cb_policy("../notebooks/trajectories/high_k_cb.pkl", "../policies/high_k_cb.pth",
-                                "../policies/high_k_cb_", lr=1e-3, epochs=40, task='hk')
+    mean, std = learn_cb_policy("../data/cohorts/low_dosage_potassium.pkl", "../policies/low_dosage_potassium.pth",
+                                "../policies/low_dosage_potassium_", lr=5e-3, epochs=40, task='hk')
+    mean, std = learn_cb_policy("../data/cohorts/high_dosage_potassium.pkl", "../policies/high_dosage_potassium.pth",
+                                "../policies/high_dosage_potassium_", lr=1e-3, epochs=40, task='hk')
 
-
+    NUM_ACTIONS=6
     # Gender, HN
-    mean, std = learn_cb_policy("../notebooks/trajectories/hn_male_cb.pkl", "../policies/hn_male_cb.pth", "../policies/hn_male_cb_", lr=5e-4, epochs=50, task='hn')
-    mean, std = learn_cb_policy("../notebooks/trajectories/hn_female_cb.pkl", "../policies/hn_female_cb.pth", "../policies/hn_female_cb_", lr=5e-4, epochs=50, task='hn')
+    mean, std = learn_cb_policy("../data/cohorts/male_sodium.pkl", "../policies/male_sodium.pth", "../policies/male_sodium_", lr=5e-4, epochs=50, task='hn')
+    mean, std = learn_cb_policy("../data/cohorts/female_sodium.pkl", "../policies/female_sodium.pth", "../policies/female_sodium_", lr=5e-4, epochs=50, task='hn')
 
     # # Comorbidity, HN
-    mean, std = learn_cb_policy("../notebooks/trajectories/hn_no_cirrhosis_cb.pkl", "../policies/hn_no_cirrhosis_cb.pth", "../policies/hn_no_cirrhosis_cb_", lr=5e-3, epochs=40, task='hn')
-    mean, std = learn_cb_policy("../notebooks/trajectories/hn_cirrhosis_cb.pkl", "../policies/hn_cirrhosis_cb.pth", "../policies/hn_cirrhosis_cb_", lr=5e-3, epochs=40, task='hn')
+    mean, std = learn_cb_policy("../data/cohorts/no_comorbidity_sodium.pkl", "../policies/no_comorbidity_sodium.pth", "../policies/no_comorbidity_sodium_", lr=5e-3, epochs=40, task='hn')
+    mean, std = learn_cb_policy("../data/cohorts/comorbidity_sodium.pkl", "../policies/comorbidity_sodium.pth", "../policies/comorbidity_sodium_", lr=5e-3, epochs=40, task='hn')
     #
-    mean, std = learn_cb_policy("../notebooks/trajectories/hn_low_na_cb.pkl", "../policies/hn_low_na.pth", "../policies/hn_low_na_cb_", lr=5e-3, epochs=40, task='hn')
-    mean, std = learn_cb_policy("../notebooks/trajectories/hn_high_na_cb.pkl", "../policies/hn_high_na.pth", "../policies/hn_high_na_", lr=5e-3, epochs=40, task='hn')
+    mean, std = learn_cb_policy("../data/cohorts/low_dosage_sodium.pkl", "../policies/low_dosage_sodium.pth", "../policies/low_dosage_sodium_", lr=5e-3, epochs=40, task='hn')
+    mean, std = learn_cb_policy("../data/cohorts/high_dosage_sodium.pkl", "../policies/high_dosage_sodium.pth", "../policies/high_dosage_sodium_", lr=5e-3, epochs=40, task='hn')
