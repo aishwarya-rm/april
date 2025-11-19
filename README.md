@@ -1,4 +1,4 @@
-# TutorTest
+# APRIL
 This repository contains the code accompanying the paper:
 “APRIL: Annotations for Policy evaluation with Reliable Inference from LLMs”
 
