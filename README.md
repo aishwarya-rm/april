@@ -11,7 +11,9 @@ APRIL is a two stage framework used to generate counterfactual annotations using
 
 # Requirements
 conda create -n april_env python=3.9 -y
+
 conda activate april_env
+
 pip install -r requirements.txt
 
 # Datasets
