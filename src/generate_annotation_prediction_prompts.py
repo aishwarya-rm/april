@@ -142,7 +142,7 @@ def generate_prediction_prompts(subject_ids, dump_fname, task):
         pickle.dump(prediction_prompts, open(dump_fname, 'wb'))
     
 
-if __name__ == 'main':
+if __name__ == '__main__':
     potassium_subject_ids = pickle.load(open('../data/potassium_ids.pkl', 'rb'))
     sodium_subject_ids = pickle.load(open('../data/sodium_ids.pkl', 'rb'))
 

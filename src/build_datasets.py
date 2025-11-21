@@ -211,7 +211,7 @@ def define_patient_cohorts(ids, task):
     return (male_subject_ids, female_subject_ids), (comorbidity_ids, no_comorbidity_ids), (low_dosage_ids, high_dosage_ids)
 
         
-if __name__ == 'main':
+if __name__ == '__main__':
     # Define cohorts
     potassium_subject_ids = pickle.load(open('../data/potassium_ids', 'rb'))
     sodium_subject_ids = pickle.load(open('../data/sodium_ids.pkl', 'rb'))

@@ -253,7 +253,7 @@ def run_ope(n_iter, counterfactual_annotations, pi_bs, pi_es, target_stats, beha
                             'cdm_upper':dm_perf_ub, 'dm_all':dm_all, 'cdm_all':cdm_all}
                 pickle.dump(results, open(results_fname, 'wb'))
 
-if __name__ == 'main':
+if __name__ == '__main__':
     '''
     Load data for OPE
     '''

@@ -40,7 +40,7 @@ def solicit_counterfactual_annotations(annotation_prompts, subject_ids, dump_fna
                             time.sleep(wait)
                 pickle.dump(counterfactual_annotations, open(dump_fname, 'wb'))
 
-if __name__ == 'main':
+if __name__ == '__main__':
     potassium_subject_ids = pickle.load(open('../data/potassium_ids.pkl', 'rb'))
     potassium_prompts = pickle.load(open('../prompts/potassium_prediction_prompts.pkl', 'rb'))
     solicit_counterfactual_annotations(potassium_prompts, potassium_subject_ids, "../data/potassium_annotations.pkl", "potassium")

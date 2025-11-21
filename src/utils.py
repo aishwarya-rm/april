@@ -18,6 +18,7 @@ HEADERS = {
         'Content-Type': 'application/json'
     }
 POTASSIUM_ACTIONS = [0, 10, 20, 40]
+SODIUM_ACTIONS = [0, 100, 200, 300, 400, 500]
 
 def restrict_annotation_count(counterfactual_annotations, num_annotations):
     new_annotations = {}
