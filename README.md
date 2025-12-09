@@ -2,7 +2,7 @@
 This repository contains the code accompanying the paper:
 “APRIL: Annotations for Policy evaluation with Reliable Inference from LLMs”
 
-Venue: Machine Learning for Healthcare Symposium 2024
+Venue: Machine Learning for Healthcare Symposium 2025
 
 Authors: Aishwarya Mandyam, Kalyani Limaye, Barbara E. Engelhardt*, Emily Alsentzer *
 
